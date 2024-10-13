@@ -6,13 +6,13 @@ source venv/bin/activate
 
 # Instala os pacotes necessários
 #pip install jupyterlite-core==0.3.0
-pip install jupyterlite-pyodide-kernel==0.4.0
+pip install jupyterlite-pyodide-kernel==0.4.2
 pip install jupyterlite-core==0.4.0
 pip install -r requirements.txt
 
 # Define a URL e o nome do arquivo
-PYODIDE_URL="https://github.com/pyodide/pyodide/releases/download/0.25.0/pyodide-0.25.0.tar.bz2"
-FILE_NAME="pyodide-0.25.0.tar.bz2"
+PYODIDE_URL="https://github.com/pyodide/pyodide/releases/download/0.26.2/pyodide-0.26.2.tar.bz2"
+FILE_NAME="pyodide-0.26.2.tar.bz2"
 
 # Verifica se o arquivo já existe
 if [ ! -f "$FILE_NAME" ]; then
@@ -43,7 +43,7 @@ jupyter lite build
 SOURCE_DIRECTORY="pyodide"
 
 # Diretório de destino para onde os arquivos .whl serão copiados
-DESTINATION_DIRECTORY="_output/extensions/@jupyterlite/pyodide-kernel-extension/static/pypi"
+DESTINATION_DIRECTORY="_output/"
 
 # Verifica se o diretório de origem existe
 if [ ! -d "$SOURCE_DIRECTORY" ]; then
@@ -55,7 +55,7 @@ fi
 mkdir -p "$DESTINATION_DIRECTORY"
 
 # Copia arquivos .whl do diretório de origem para o diretório de destino
-find "$SOURCE_DIRECTORY" -type f -name "*.whl" -exec cp {} "$DESTINATION_DIRECTORY" \;
+find "$SOURCE_DIRECTORY" -type f -name "*.*" -exec cp {} "$DESTINATION_DIRECTORY" \;
 
 echo "Cópia concluída. Arquivos .whl foram copiados para '$DESTINATION_DIRECTORY'."
 
@@ -86,20 +86,20 @@ replace_word() {
 
 # Atribui argumentos às variáveis
 DIRECTORY=_output
-SEARCH_WORD="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"
-REPLACE_WORD="/app/pypi"
+SEARCH_WORD="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js"
+REPLACE_WORD="/pyodide.js"
 
 # Chama a função replace_word
-replace_word "$DIRECTORY" "$SEARCH_WORD" "$REPLACE_WORD"
+#replace_word "$DIRECTORY" "$SEARCH_WORD" "$REPLACE_WORD"
 
 # Atribui argumentos às variáveis para a segunda substituição
 DIRECTORY=_output
-SEARCH_WORD="https://cdn.jsdelivr.net/pyodide/v\\\${u.version}/full/"
-REPLACE_WORD="/app/pypi"
+SEARCH_WORD="https://cdn.jsdelivr.net/pyodide/v\\\${c.version}/full/"
+REPLACE_WORD="/"
 
 # Chama a função replace_word novamente
-replace_word "$DIRECTORY" "$SEARCH_WORD" "$REPLACE_WORD"
+#replace_word "$DIRECTORY" "$SEARCH_WORD" "$REPLACE_WORD"
 
 
 # Inicia o jupyterlite
-python3 -m uvicorn main:app --reload 
+/home/pendragon/JavaScript/jupyterlite/venv/bin/python -m uvicorn main:app --reload 
