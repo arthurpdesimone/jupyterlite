@@ -90,7 +90,7 @@ SEARCH_WORD="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js"
 REPLACE_WORD="/pyodide.js"
 
 # Chama a função replace_word
-#replace_word "$DIRECTORY" "$SEARCH_WORD" "$REPLACE_WORD"
+replace_word "$DIRECTORY" "$SEARCH_WORD" "$REPLACE_WORD"
 
 # Atribui argumentos às variáveis para a segunda substituição
 DIRECTORY=_output
@@ -98,8 +98,11 @@ SEARCH_WORD="https://cdn.jsdelivr.net/pyodide/v\\\${c.version}/full/"
 REPLACE_WORD="/"
 
 # Chama a função replace_word novamente
-#replace_word "$DIRECTORY" "$SEARCH_WORD" "$REPLACE_WORD"
+replace_word "$DIRECTORY" "$SEARCH_WORD" "$REPLACE_WORD"
+
+# Copia o pyodide.asm.js modificado
+cp /pyodide.asm.js $DIRECTORY
 
 
 # Inicia o jupyterlite
-/home/pendragon/JavaScript/jupyterlite/venv/bin/python -m uvicorn main:app --reload 
+python -m uvicorn main:app --reload 
