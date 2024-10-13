@@ -116,7 +116,8 @@ echo "✅ Copiado com sucesso."
 print_separator
 
 # Inicia o Jupyter Lite
-echo "🚀 Iniciando o servidor Jupyter Lite..."
-python -m uvicorn main:app --reload
-echo "✅ Jupyter Lite iniciado com sucesso!"
+PORT=8000  # Altere este valor para a porta desejada
+echo "🚀 Iniciando o servidor Jupyter Lite na porta $PORT..."
+python -m uvicorn main:app --reload --port $PORT
+echo "✅ Jupyter Lite iniciado com sucesso na porta $PORT!"
 
