@@ -101,7 +101,7 @@ REPLACE_WORD="/"
 replace_word "$DIRECTORY" "$SEARCH_WORD" "$REPLACE_WORD"
 
 # Copia o pyodide.asm.js modificado
-cp /pyodide.asm.js $DIRECTORY
+cp pyodide.asm.js $DIRECTORY/
 
 
 # Inicia o jupyterlite
