@@ -1,11 +1,8 @@
-import hashlib
-
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException, Request, Response, Header
 from fastapi.staticfiles import StaticFiles
-import aiohttp
-import asyncio
+
 
 class CustomMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
